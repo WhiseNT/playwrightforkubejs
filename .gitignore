@@ -1,0 +1,34 @@
+# Local assistant plans and task state
+.narrafork/
+
+# Gradle and build outputs
+.gradle/
+build/
+
+# Minecraft runtime state, worlds, logs, and generated E2E runs
+run/
+logs/
+crash-reports/
+
+# IDE-local project state
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local configuration and credentials
+local.properties
+.env
+.env.*
+!.env.example
+
+# Operating-system files
+.DS_Store
+Thumbs.db

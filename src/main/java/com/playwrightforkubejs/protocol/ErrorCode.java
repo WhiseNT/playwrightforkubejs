@@ -1,0 +1,19 @@
+package com.playwrightforkubejs.protocol;
+
+public enum ErrorCode {
+    CONNECTION_FAILED,
+    TIMEOUT,
+    CLIENT_NOT_RUNNING,
+    INVALID_PARAMS,
+    GUI_NOT_OPEN,
+    SLOT_OUT_OF_RANGE,
+    ENTITY_NOT_FOUND,
+    BLOCK_OUT_OF_RANGE,
+    PATHFINDING_FAILED,
+    NOT_IN_WORLD,
+    INVALID_ACTION,
+    INTERNAL_ERROR,
+    ENGINE_UNSUPPORTED,
+    SCRIPT_RELOADED,
+    CANCELLED
+}
