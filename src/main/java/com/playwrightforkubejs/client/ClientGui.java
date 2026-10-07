@@ -79,7 +79,7 @@ public final class ClientGui {
             throw invalid("GUI textbox did not acquire editable focus: " + selector);
         }
         String before = editBox.getValue();
-        editBox.moveCursorToEnd();
+        editBox.moveCursorToEnd(false);
         editBox.setHighlightPos(0);
         editBox.insertText(text);
         requireCurrent(tree.screen);
@@ -108,7 +108,7 @@ public final class ClientGui {
         if (target.worldList != null) {
             // Click the row text area, not the join-icon region, using the measured row geometry.
             x = target.worldList.getRowRight() - rectangle.width() / 4.0;
-            y = (Math.max(rectangle.top(), target.worldList.getTop())
+            y = (Math.max(rectangle.top(), target.worldList.getY())
                 + Math.min(rectangle.bottom(), target.worldList.getBottom())) / 2.0;
         }
         if (!target.listener.isMouseOver(x, y)) {
@@ -135,12 +135,12 @@ public final class ClientGui {
         }
         requireCurrent(tree.screen);
         WorldSelectionList list = node.worldList;
-        if (node.rectangle.top() >= list.getTop() && node.rectangle.bottom() <= list.getBottom()) {
+        if (node.rectangle.top() >= list.getY() && node.rectangle.bottom() <= list.getBottom()) {
             return false;
         }
         // Public list scrolling only changes its viewport; selection/loading still use Screen input.
         double center = node.rectangle.top() + node.rectangle.height() / 2.0;
-        list.setScrollAmount(list.getScrollAmount() + center - (list.getTop() + list.getBottom()) / 2.0);
+        list.setScrollAmount(list.getScrollAmount() + center - (list.getY() + list.getBottom()) / 2.0);
         return true;
     }
 
@@ -199,9 +199,9 @@ public final class ClientGui {
                 rectangle = new ScreenRectangle(worldList.getRowLeft(), top, worldList.getRowWidth(), bottom - top);
                 role = "world";
                 message = Component.literal(entry.summary.getLevelName());
-                enabled &= entry.isSelectable();
+                enabled &= entry.canJoin();
                 visible &= GuiSelector.intersects(rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(),
-                    worldList.getLeft(), worldList.getTop(), worldList.getRight(), worldList.getBottom());
+                    worldList.getX(), worldList.getY(), worldList.getRight(), worldList.getBottom());
                 data.put("worldId", entry.summary.getLevelId());
                 data.put("worldName", entry.summary.getLevelName());
                 data.put("selected", worldList.getSelected() == entry);

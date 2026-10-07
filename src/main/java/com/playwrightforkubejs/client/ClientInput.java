@@ -246,7 +246,7 @@ public final class ClientInput {
         }
         double[] position = pointer(Map.of());
         requireScreen(screen);
-        boolean handled = screen.mouseScrolled(position[0], position[1], delta);
+        boolean handled = screen.mouseScrolled(position[0], position[1], 0.0, delta);
         if (minecraft.screen == screen) {
             screen.afterMouseAction();
         }

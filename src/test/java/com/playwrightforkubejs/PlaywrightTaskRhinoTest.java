@@ -5,11 +5,13 @@ import com.playwrightforkubejs.protocol.PlaywrightException;
 import com.playwrightforkubejs.task.PlaywrightTask;
 import com.playwrightforkubejs.task.RhinoCallbacks;
 import dev.latvian.mods.rhino.Context;
+import dev.latvian.mods.rhino.ContextFactory;
 import dev.latvian.mods.rhino.BaseFunction;
 import dev.latvian.mods.rhino.Function;
 import dev.latvian.mods.rhino.NativeJavaObject;
 import dev.latvian.mods.rhino.Scriptable;
 import dev.latvian.mods.rhino.Wrapper;
+import dev.latvian.mods.rhino.type.TypeInfo;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
@@ -26,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 final class PlaywrightTaskRhinoTest {
     private final TestDispatcher dispatcher = new TestDispatcher();
-    private final Context context = Context.enter();
+    private final Context context = new ContextFactory().enter();
     private final Scriptable scope = context.initStandardObjects();
 
     @Test
@@ -73,18 +75,17 @@ final class PlaywrightTaskRhinoTest {
     @Test
     void callbackUsesOriginatingContextInsteadOfDroppingHostConfiguration() {
         RhinoCallbacks.bindContext(scope, context);
-        context.setClassShutter((name, kind) -> !name.equals("java.lang.System"));
-        context.setProperty("host-marker", "configured-context");
+        AtomicReference<Context> activeContext = new AtomicReference<>();
         context.addToScope(scope, "hostProbe", new BaseFunction() {
             @Override
             public Object call(Context active, Scriptable callScope, Scriptable self, Object[] args) {
-                return active.getProperty("host-marker");
+                activeContext.set(active);
+                return "configured-context";
             }
         });
         Function callback = function("function() { return hostProbe(); }");
         assertEquals("configured-context", RhinoCallbacks.invoke(callback));
-        assertThrows(RuntimeException.class,
-            () -> RhinoCallbacks.invoke(function("function() { return java.lang.System.currentTimeMillis(); }")));
+        assertSame(context, activeContext.get(), "callback must run on the originating context");
     }
 
     @Test
@@ -138,7 +139,7 @@ final class PlaywrightTaskRhinoTest {
         PlaywrightTask<Object> nested = pending();
         bind("nested", nested);
         Function callback = function("function(v) { return nested; }");
-        Object wrappedCallback = new NativeJavaObject(scope, callback, Function.class, context);
+        Object wrappedCallback = new NativeJavaObject(scope, callback, TypeInfo.of(Function.class), context);
         PlaywrightTask<?> next = root.then(wrappedCallback);
         root.complete("ready");
         dispatcher.drain();
@@ -312,7 +313,7 @@ final class PlaywrightTaskRhinoTest {
     void entityTargetDispatchUnwrapsNumbersAndRejectsInvalidValues() throws Exception {
         var method = com.playwrightforkubejs.api.PageApi.EntityApi.class.getDeclaredMethod("targetParams", Object.class);
         method.setAccessible(true);
-        Object wrapped = new NativeJavaObject(scope, 143.0, Double.class, context);
+        Object wrapped = new NativeJavaObject(scope, 143.0, TypeInfo.of(Double.class), context);
         assertEquals(Map.of("id", 143), method.invoke(null, wrapped));
         assertEquals(Map.of("id", 143), method.invoke(null, 143.0));
         Object filter = evaluate("({id:143, maxDistance:3})");

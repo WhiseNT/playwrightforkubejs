@@ -1,8 +1,9 @@
 plugins {
-    id 'eclipse'
+    id 'java'
     id 'idea'
+    id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 version = mod_version
@@ -12,7 +13,7 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 def e2eEnabled = providers.gradleProperty('playwrightE2E').map { it.toBoolean() }.getOrElse(false)
 def e2eRunId = providers.gradleProperty('playwrightRunId').getOrElse('')
@@ -21,51 +22,6 @@ if (e2eEnabled && !(e2eRunId ==~ /[A-Za-z0-9_-]{1,80}/)) {
 }
 def e2eDirectory = layout.projectDirectory.dir("run/e2e/${e2eRunId}")
 
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-
-    copyIdeResources = true
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        configureEach {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        client {
-            if (e2eEnabled) {
-                workingDirectory e2eDirectory.asFile
-                property 'playwright.e2e', 'true'
-                property 'playwright.e2e.runId', e2eRunId
-                property 'playwright.e2e.exit', 'true'
-                args '--width', '1024', '--height', '768'
-            }
-        }
-
-        server {
-            args '--nogui'
-        }
-
-        gameTestServer {
-        }
-
-        data {
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-        }
-    }
-}
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -73,24 +29,57 @@ repositories {
         name = 'LatvianDev'
         url = 'https://maven.latvian.dev/releases'
     }
+    // KubeJS runtime dependencies (e.g. animated-gif-lib-for-java) are published on JitPack.
     maven {
-        name = 'Architectury'
-        url = 'https://maven.architectury.dev/'
+        name = 'JitPack'
+        url = 'https://jitpack.io'
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    validateAccessTransformers = false
+    accessTransformers.from file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            client()
+            if (e2eEnabled) {
+                gameDirectory = e2eDirectory
+                systemProperties.put('playwright.e2e', 'true')
+                systemProperties.put('playwright.e2e.runId', e2eRunId)
+                systemProperties.put('playwright.e2e.exit', 'true')
+                programArguments.addAll '--width', '1024', '--height', '768'
+            }
+        }
+        server {
+            server()
+        }
+        data {
+            clientData()
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+
+    unitTest {
+        enable()
+        testedMod = mods."${mod_id}"
     }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // Available to compilation and development runs; never bundled into this mod jar.
+    implementation "dev.latvian.mods:kubejs-neoforge:${kubejs_version}"
 
-    // Available to Java compilation and Forge development runs, never bundled into this mod jar.
-    compileOnly fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
-    runtimeOnly fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
-    compileOnly fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-    runtimeOnly fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
-    compileOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
-
-    testImplementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
@@ -131,19 +120,20 @@ processResources {
     def replaceProperties = [
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
-            forge_version_range    : forge_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description       : mod_description
+            mod_description        : mod_description
     ]
 
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
         expand replaceProperties
     }
 }

@@ -3,6 +3,7 @@ package com.playwrightforkubejs.task;
 import com.playwrightforkubejs.protocol.ErrorCode;
 import com.playwrightforkubejs.protocol.PlaywrightException;
 import dev.latvian.mods.rhino.Context;
+import dev.latvian.mods.rhino.ContextFactory;
 import dev.latvian.mods.rhino.Function;
 import dev.latvian.mods.rhino.Scriptable;
 import dev.latvian.mods.rhino.ScriptableObject;
@@ -36,7 +37,7 @@ public final class RhinoCallbacks {
             return context;
         }
         // Standalone Rhino callers do not have a KubeJS script manager.
-        return Context.enter();
+        return new ContextFactory().enter();
     }
 
     /** Java 17 immutable collection implementations are not publicly reflectable by Rhino. */
@@ -81,7 +82,7 @@ public final class RhinoCallbacks {
         Context context = contextFor(scope);
         Object[] wrapped = new Object[arguments.length];
         for (int i = 0; i < arguments.length; i++) {
-            wrapped[i] = Context.javaToJS(context, scriptValue(arguments[i]), scope);
+            wrapped[i] = context.javaToJS(scriptValue(arguments[i]), scope);
         }
         return unwrap(context.callSync(function, scope, scope, wrapped));
     }

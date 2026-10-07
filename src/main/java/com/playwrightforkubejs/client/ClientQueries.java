@@ -14,14 +14,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.scores.DisplaySlot;
 import net.minecraft.world.scores.Objective;
-import net.minecraft.world.scores.Score;
+import net.minecraft.world.scores.PlayerScoreEntry;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,7 +107,7 @@ public final class ClientQueries {
         LocalPlayer player = player(minecraft);
         List<Map<String, Object>> values = new ArrayList<>();
         player.getActiveEffects().forEach(effect -> values.add(Map.of(
-            "effect", ForgeRegistries.MOB_EFFECTS.getKey(effect.getEffect()).toString(),
+            "effect", BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect().value()).toString(),
             "amplifier", effect.getAmplifier(),
             "duration", effect.getDuration(),
             "ambient", effect.isAmbient(),
@@ -163,13 +165,13 @@ public final class ClientQueries {
     private static Map<String, Object> scoreboard(Minecraft minecraft) {
         player(minecraft);
         Scoreboard scoreboard = minecraft.level.getScoreboard();
-        Objective objective = scoreboard.getDisplayObjective(Scoreboard.DISPLAY_SLOT_SIDEBAR);
+        Objective objective = scoreboard.getDisplayObjective(DisplaySlot.SIDEBAR);
         if (objective == null) {
             return Map.of("visible", false, "scores", List.of());
         }
-        List<Map<String, Object>> scores = scoreboard.getPlayerScores(objective).stream()
-            .sorted(Score.SCORE_COMPARATOR)
-            .map(score -> Map.<String, Object>of("owner", score.getOwner(), "score", score.getScore()))
+        List<Map<String, Object>> scores = scoreboard.listPlayerScores(objective).stream()
+            .sorted(Comparator.comparingInt(PlayerScoreEntry::value).reversed())
+            .map(score -> Map.<String, Object>of("owner", score.owner(), "score", score.value()))
             .toList();
         return Map.of("visible", true, "objective", objective.getName(), "title", objective.getDisplayName().getString(), "scores", scores);
     }
@@ -209,7 +211,7 @@ public final class ClientQueries {
     private static Map<String, Object> block(Minecraft minecraft, BlockPos pos) {
         player(minecraft);
         BlockState state = minecraft.level.getBlockState(pos);
-        String id = ForgeRegistries.BLOCKS.getKey(state.getBlock()).toString();
+        String id = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
         return Map.of(
             "x", pos.getX(), "y", pos.getY(), "z", pos.getZ(),
             "block", id,
@@ -240,7 +242,7 @@ public final class ClientQueries {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("id", entity.getId());
         result.put("uuid", entity.getUUID().toString());
-        result.put("type", ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString());
+        result.put("type", BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString());
         result.put("name", entity.getName().getString());
         result.put("x", entity.getX());
         result.put("y", entity.getY());

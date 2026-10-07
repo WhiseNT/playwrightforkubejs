@@ -22,7 +22,7 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.io.File;
 import java.io.IOException;
@@ -517,7 +517,7 @@ public final class ClientActions {
                 return true;
             }
             if (normalizedType != null) {
-                var key = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+                var key = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
                 if (key == null || !key.toString().equalsIgnoreCase(normalizedType)) {
                     return true;
                 }
