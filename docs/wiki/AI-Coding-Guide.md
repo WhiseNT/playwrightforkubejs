@@ -8,7 +8,7 @@
 
 在为当前 release 生成代码前：
 
-1. 确认目标 Minecraft/Forge/KubeJS 版本及当前 tag。
+1. 确认目标 Minecraft/NeoForge/KubeJS 版本及当前 tag。
 2. 打开此 Wiki 的 API 页和示例脚本；发生版本冲突时以当前检出的源码签名为准。
 3. 只使用已实现的 `Playwright` / `PlaywrightTask` / PageApi / LocatorApi 方法。不要猜浏览器 API，也不要臆造 `page.goto`、DOM、ARIA 自动等待或网络浏览器上下文。
 4. 在 `.then(...)` 链里返回每个依赖动作/等待/断言；不要将任务当作同步返回值。
@@ -21,14 +21,20 @@
 11. 若没有 Gradle 开发环境但有已配置的 NTLauncher 实例，可将 [NTLauncher CLI](https://ntlaunch.cn/docs) 用作可选的外部启动器；先核对实例 `install_state`、Java、账号、模组和脚本是否就绪。
 12. 不要将 CLI 启动成功当作测试通过。必须从 KubeJS/客户端日志或测试结构化结果中确认断言完成，并检查 CLI 退出码与错误输出；`launch` 前台模式会一直等待到游戏退出。
 
+## 当前分支与跨版本策略
+
+当前 `mc-1.21.1` 发布目标为 `v0.1.0-mc1.21.1` / `0.1.0+mc1.21.1`，环境是 MC 1.21.1、NeoForge 21.1.256、Java 21、KubeJS `2101.7.2-build.379`。Rhino 按该 KubeJS 依赖要求安装；不要臆造版本或把 Architectury 写为当前分支明确依赖。历史 Forge 1.20.1 `v0.1.0` 发行版需单独选择。
+
+公共 Playwright API 尽量跨版本保持同名方法、参数、返回值和错误语义，由底层处理版本差异。原生命令、NBT、Java 访问和 KubeJS 版本特性可能不同；测试夹具集中适配是方向，尚未实现跨版本统一夹具。不得据双语客户端通过或一次 64 阶段 PASS 宣称全部兼容、兼容层已建成或偶发失败绝不复现。
+
 ## 非开发环境启动工作流（可选）
 
-NTLauncher CLI 可帮助 Agent 在没有 Gradle 调试环境时启动一个**已经配置完成**的 Windows Minecraft 实例。它不构建本项目、不安装 Forge/KubeJS/本模组、不复制脚本，也不提供本模组的游戏内自动化 API；这些能力仍来自预先安装在目标实例里的 Playwright For KubeJS。
+NTLauncher CLI 可帮助 Agent 在没有 Gradle 调试环境时启动一个**已经配置完成**的 Windows Minecraft 实例。它不构建本项目、不安装 NeoForge/KubeJS/本模组、不复制脚本，也不提供本模组的游戏内自动化 API；这些能力仍来自预先安装在目标实例里的 Playwright For KubeJS。
 
 推荐步骤：
 
 1. 用 `ntlauncher-cli.exe list-instances --json` 列出实例，选定 ID 并确认 `install_state` 为 `Installed`。
-2. 确认实例的 Java、账号、Minecraft/Forge/KubeJS 依赖、本模组和客户端脚本均已设置。
+2. 确认实例的 Java、账号、Minecraft/NeoForge/KubeJS 依赖、本模组和客户端脚本均已设置。
 3. 按 [NTLauncher CLI 文档](https://ntlaunch.cn/docs) 启动实例；`launch --instance-id <ID> --json` 是前台阻塞命令，游戏退出后才返回。需要后台运行时使用独立 CLI 进程，再用 `status`/`stop` 管理。
 4. 在游戏日志或明确的测试结果文件中确认脚本运行、断言通过和错误状态。CLI 的成功响应只证明其启动流程完成，不证明客户端用例通过。
 5. 为启动和测试设置有界超时，失败时保存 CLI 错误输出及相关 Minecraft/KubeJS 日志；不要无条件终止玩家已有实例。

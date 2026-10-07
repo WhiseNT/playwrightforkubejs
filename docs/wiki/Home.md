@@ -2,7 +2,7 @@
 
 欢迎！本 Wiki 面向第一次使用的整合包玩家、KubeJS 脚本作者、模组开发者和编码助手。
 
-> **快速认识项目：**这是 Minecraft 1.20.1 / Forge 客户端侧的 KubeJS 自动化与测试 API。它提供 GUI、locator、玩家状态、背包/菜单槽位、输入和有界异步任务。它不是浏览器自动化工具、不是官方 Playwright，也没有完整 A* 路径规划。
+> **快速认识项目：**这是当前 `mc-1.21.1` 分支的 Minecraft 1.21.1 / NeoForge 客户端侧的 KubeJS 自动化与测试 API。它提供 GUI、locator、玩家状态、背包/菜单槽位、输入和有界异步任务。它不是浏览器自动化工具、不是官方 Playwright，也没有完整 A* 路径规划。
 
 ## 按你的目标开始
 
@@ -21,7 +21,9 @@
 
 ## 适用版本和证据边界
 
-项目发布配置和真实客户端验收目标为 Java 17、Minecraft 1.20.1、Forge 47.2.0、KubeJS Forge `2001.6.5-build.26`、Rhino `2001.2.2-build.17`、Architectury `9.2.14`。发布说明以 JAR 所属 tag 的 README 为准。
+当前发布目标为 `0.1.0+mc1.21.1`（tag `v0.1.0-mc1.21.1`）：Java 21、Minecraft 1.21.1、NeoForge 21.1.256、KubeJS `2101.7.2-build.379`，Rhino 按 KubeJS 依赖要求安装；Architectury 不再是本分支明确依赖。历史 `v0.1.0` 仍适用于 Forge 1.20.1，不能混用 JAR。发布说明以 JAR 所属 tag 的 README 为准。
+
+2026 年 10 月 7 日当前分支英文/简体中文客户端均跑通过。最新单次英文 `diag-knockback-fix` 结果为 64 个 required 阶段 PASS、零校验错误、107 秒；尚无可靠性统计。详情见 [E2E 测试](E2E-Testing.md)。公共 API 尽量保持跨版本方法名、参数、返回值和错误语义；原生命令/NBT/Java/KubeJS 特性可不同，跨版本统一测试夹具仍未实现。
 
 当前真实客户端覆盖英文/简体中文 UI、菜单、背包与真实工作台合成、原版箱子槽转移/关闭重开/存档重进、装备、战斗、有限移动、重载和输入释放。测试采用单人平坦世界及命令准备固定夹具。自定义模组屏幕、其他 loader/版本、多人和真实整合包组合仍需要单独验收。
 

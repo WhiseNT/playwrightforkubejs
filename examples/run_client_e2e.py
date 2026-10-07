@@ -1,8 +1,8 @@
-"""Bounded real Forge graphical-client runner. Requires Python 3 and psutil.
+"""Bounded real NeoForge graphical-client runner. Requires Python 3 and psutil.
 
 Each invocation uses a fresh directory and refuses to overwrite existing worlds.
 Success requires every assertion event, nonempty framebuffer PNGs and exit code 0.
-Example: python examples/run_client_e2e.py --suite --java-home <jdk17>
+Example: python examples/run_client_e2e.py --suite --java-home <jdk21>
 """
 import argparse
 import datetime
@@ -735,8 +735,8 @@ def run_one(args, run_id, language, scale):
     java = java_home / "bin" / ("java.exe" if os.name == "nt" else "java")
     version = subprocess.run([str(java), "-version"], capture_output=True, text=True, check=True)
     java_version = version.stdout + version.stderr
-    if not re.search(r'version "17[.\"]', java_version):
-        raise RuntimeError("A Java 17 runtime is required")
+    if not re.search(r'version "21[.\"]', java_version):
+        raise RuntimeError("A Java 21 runtime is required for the NeoForge 1.21.1 client")
     environment = os.environ.copy()
     environment["JAVA_HOME"] = str(java_home)
     environment["PATH"] = str(java_home / "bin") + os.pathsep + environment.get("PATH", "")

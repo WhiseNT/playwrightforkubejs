@@ -55,4 +55,4 @@ screen snapshot 的边界坐标采用 `gui-scaled` 坐标系，不是物理窗�
 
 ## Screen class 名称
 
-`gui().waitFor(screenType, timeoutMs)` 按真实 screen class 简名/类名等待。例如在本项目的 Minecraft 1.20.1 客户端里，原版箱子实际暴露为通用 `ContainerScreen`（标题为 Chest），不是名为 `ChestScreen` 的类。写测试前先 snapshot 核对目标版本真实 screen type，不要根据屏幕标题臆测 Java 类名。
+`gui().waitFor(screenType, timeoutMs)` 按真实 screen class 简名/类名等待。例如在本项目历史 Minecraft 1.20.1 客户端验收里，原版箱子实际暴露为通用 `ContainerScreen`（标题为 Chest），不是名为 `ChestScreen` 的类。写测试前先 snapshot 核对目标版本真实 screen type，不要根据屏幕标题臆测 Java 类名。

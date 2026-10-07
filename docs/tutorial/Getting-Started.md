@@ -2,18 +2,20 @@
 
 本教程面向第一次写 KubeJS 客户端测试的玩家和整合包制作者。按顺序做完后，你会在游戏中运行一个脚本：等客户端准备好、读取玩家状态、打开暂停菜单、用语言无关的控件定位器点“回到游戏”，并在客户端日志看到结果。
 
-> 本教程针对 Minecraft 1.20.1、Forge 47.x、Java 17 和 KubeJS for Forge。自定义 GUI 和其他版本需要另行验证。模组 API 借鉴 Playwright 风格，但不是官方 Playwright，也不驱动浏览器。
+> 本教程针对当前 `mc-1.21.1` 分支的 Minecraft 1.21.1、NeoForge 21.1.256、Java 21 和 KubeJS for NeoForge。自定义 GUI 和其他版本需要另行验证。模组 API 借鉴 Playwright 风格，但不是官方 Playwright，也不驱动浏览器。
 
 ## 1. 安装环境
 
 需要：
 
-- Java 17。
-- Minecraft 1.20.1 和 Forge 47.2.0（或经验证兼容的 Forge 47.x）。
-- KubeJS for Forge `2001.6.5-build.26` 及其依赖 Rhino `2001.2.2-build.17`、Architectury `9.2.14`。
-- Playwright For KubeJS `0.1.0`。
+- Java 21。
+- Minecraft 1.21.1 和 NeoForge 21.1.256。
+- KubeJS for NeoForge `2101.7.2-build.379` 及其要求的 Rhino 依赖；本分支不明确依赖 Architectury。
+- Playwright For KubeJS `0.1.0+mc1.21.1`。
 
-下载本教程对应的 JAR：从项目 GitHub 的 `v0.1.0` Release 下载 `playwrightforkubejs-0.1.0.jar`。把 JAR 放入**同一个 Minecraft 实例**的 `mods/` 目录，同时确保上述 Forge 与 KubeJS 依赖也在该目录。启动客户端；本模组提供的是客户端自动化绑定。
+本教程对应 GitHub tag `v0.1.0-mc1.21.1`，从[对应 Release](https://github.com/WhiseNT/playwrightforkubejs/releases/tag/v0.1.0-mc1.21.1) 下载 `playwrightforkubejs-0.1.0+mc1.21.1.jar`。把 JAR 放入**同一个 Minecraft 实例**的 `mods/` 目录，同时确保上述 NeoForge 与 KubeJS 依赖也在该实例。启动客户端；本模组提供的是客户端自动化绑定。
+
+历史 `v0.1.0` Release 的 `playwrightforkubejs-0.1.0.jar` 只适用于 Forge 1.20.1，不是本教程的 1.21.1 JAR。
 
 不要把这个项目的 GitHub 源码 ZIP 当作 mod JAR 使用。正常安装只需要下载 `.jar` Release 附件，不必运行 Gradle。
 
@@ -102,7 +104,7 @@ Playwright.run("first-client-test", function (page) {
 
 **新版本安装后旧脚本报错**
 
-检查 Java、Minecraft、Forge、KubeJS、Rhino 与 mod 版本是否匹配。其他 Minecraft 版本和 loader 当前不在发布版兼容承诺内。
+检查 Java、Minecraft、NeoForge、KubeJS、Rhino 与 mod 版本是否匹配。公共 Playwright API 尽量保持跨版本同名方法、参数、返回值和错误语义，但原生命令、NBT、Java 访问和 KubeJS 版本特性可能不同。其他版本或 loader 应使用对应分支/发行版，并独立验证；尚无跨版本统一测试夹具。
 
 **要测试容器或整合包自定义屏幕**
 

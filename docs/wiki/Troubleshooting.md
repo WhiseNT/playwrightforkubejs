@@ -6,7 +6,7 @@
 
 | 错误/症状 | 常见原因 | 排查步骤 |
 | --- | --- | --- |
-| `Playwright is not defined` | mod 没加载、装错实例、脚本放错到 server scripts | 查 Forge 启动时缺失依赖；确认 JAR 与 KubeJS 都在当前客户端实例 `mods/`；脚本放 `kubejs/client_scripts/` |
+| `Playwright is not defined` | mod 没加载、装错实例、脚本放错到 server scripts | 查当前 NeoForge 启动时缺失依赖；确认 JAR 与 KubeJS 都在当前客户端实例 `mods/`；脚本放 `kubejs/client_scripts/` |
 | `NOT_IN_WORLD` | 动作需要玩家/世界，但脚本仍在标题菜单/加载页 | 先 `page.status().ready(timeoutMs)`，在 `.then()` 之后再读世界 |
 | `TIMEOUT` | screen/state/locator 未在期限内出现，或客户端卡顿 | 查超时阶段和当时 `gui().snapshot()`；核实真实 screen type/前置条件，再设合理有限 timeout |
 | `GUI_NOT_OPEN` | 还没打开 container/菜单，或屏幕已切换 | 先等待真实 GUI screen，再对当前 screen 查询 slot |
@@ -18,9 +18,13 @@
 | `CANCELLED` | 有界 task 被显式取消或由其上层链取消 | 检查取消是预期测试结果还是错误处理；确认 movement/input 已释放 |
 | `PATHFINDING_FAILED` | 有界移动未到目标/期限内停止 | 此 mod 的 `move.to` 是目标跟随并带局部防卡行为，不是路径规划。先检查角色、障碍与目标，不要把这个错误误诊成 A* 路径失败 |
 
+## 当前 1.21.1 分支已修复问题
+
+2026-10-07 已修复 `registerBindings` 误清异步任务（改在 `beforeScriptsLoaded` 清理旧 generation），以及召唤属性 NBT、准备阶段无来源 `damage` 的随机击退对战斗初始位置的污染。如果类似症状再次发生，请保留 reload 顺序、战斗前后位置和首个失败阶段；最新单次英文测试 64 个 required 阶段 PASS 不等于可靠性统计，也不保证偶发失败绝不再出现。
+
 ## 收集最小诊断信息
 
-提供给维护者/AI 时，保留：Minecraft/Forge/KubeJS/Rhino/Architectury 版本、语言、准确错误码和完整首个异常、当前 screen type、最小复现脚本、断言前后观测到的状态。去掉 Microsoft/Mojang 登录数据、完整个人 `.minecraft` 目录、访问令牌和私人世界文件。
+提供给维护者/AI 时，保留：Minecraft/loader（当前分支为 NeoForge）/Java/KubeJS/Rhino/mod 版本，以及其他已安装依赖版本、语言、准确错误码和完整首个异常、当前 screen type、最小复现脚本、断言前后观测到的状态。去掉 Microsoft/Mojang 登录数据、完整个人 `.minecraft` 目录、访问令牌和私人世界文件。
 
 ## 反馈前的安全检查
 

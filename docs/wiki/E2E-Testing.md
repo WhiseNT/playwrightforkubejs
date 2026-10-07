@@ -12,8 +12,8 @@
 
 ## 环境要求
 
-- Java 17。
-- 运行时配置对应的 Minecraft 1.20.1、Forge 47.x 与 KubeJS 依赖。
+- Java 21。
+- 当前 `mc-1.21.1` 分支对应 Minecraft 1.21.1、NeoForge 21.1.256、KubeJS `2101.7.2-build.379` 与该 KubeJS 要求的 Rhino 依赖。
 - Python 3 和 `psutil`（`python -m pip install psutil`）。
 - 可用图形桌面和能运行 Minecraft client 的显卡/驱动。
 - Gradle 8.8。runner 默认查找 Gradle 8.8 wrapper 缓存；找不到时传 `--gradle`。
@@ -24,7 +24,7 @@
 ```bash
 python examples/run_client_e2e.py \
   --suite \
-  --java-home "/path/to/jdk-17" \
+  --java-home "/path/to/jdk-21" \
   --gradle "/path/to/gradle-8.8/bin/gradle" \
   --timeout 600
 ```
@@ -32,7 +32,7 @@ python examples/run_client_e2e.py \
 Windows PowerShell 示例（请换成本机真实路径）：
 
 ```powershell
-$env:JAVA_HOME = "C:\Path\To\jdk-17"
+$env:JAVA_HOME = "C:\Path\To\jdk-21"
 python examples/run_client_e2e.py `
   --suite `
   --java-home $env:JAVA_HOME `
@@ -44,9 +44,9 @@ python examples/run_client_e2e.py `
 
 ## 非 Gradle 环境：使用 NTLauncher CLI 启动已有实例（可选）
 
-当 Agent 所在环境没有 Gradle 开发/调试环境，但已有配置完成的 NTLauncher Minecraft 实例时，可使用 [NTLauncher CLI](https://ntlaunch.cn/) 启动该实例。NTLauncher CLI 负责启动与进程管理；本模组仅在 Minecraft 客户端加载后提供游戏内自动化 API。此路径不构建模组、不安装 Forge/KubeJS/依赖、不复制测试脚本，也不会自动判定模组测试通过。
+当 Agent 所在环境没有 Gradle 开发/调试环境，但已有配置完成的 NTLauncher Minecraft 实例时，可使用 [NTLauncher CLI](https://ntlaunch.cn/) 启动该实例。NTLauncher CLI 负责启动与进程管理；本模组仅在 Minecraft 客户端加载后提供游戏内自动化 API。此路径不构建模组、不安装 NeoForge/KubeJS/依赖、不复制测试脚本，也不会自动判定模组测试通过。
 
-前置条件：NTLauncher CLI 当前提供 Windows 可执行文件；目标实例已安装完成（`install_state == "Installed"`），配置了可用 Java 和账号，并已安装兼容的 Forge、KubeJS 依赖、本模组 JAR 及 `kubejs/client_scripts/` 测试脚本。
+前置条件：NTLauncher CLI 当前提供 Windows 可执行文件；目标实例已安装完成（`install_state == "Installed"`），配置了可用 Java 和账号，并已安装兼容的 NeoForge、KubeJS 依赖、本模组 JAR 及 `kubejs/client_scripts/` 测试脚本。
 
 基本命令：
 
@@ -75,8 +75,16 @@ if ($LASTEXITCODE -ne 0) { throw "NTLauncher/Minecraft 启动流程失败" }
 
 `run/` 被 Git 忽略；不要把本机存档或报告提交到公共源码仓库。Release 验收档案如需共享，先删去本机用户名、绝对路径和无关个人数据。
 
+## 当前分支运行证据（2026-10-07）
+
+Minecraft 1.21.1 / NeoForge 21.1.256 / Java 21 / KubeJS `2101.7.2-build.379` 的 `en_us`、`zh_cn` 客户端均跑通过。最新单次英文 `diag-knockback-fix` 运行中，64 个 required 阶段全部 PASS，校验错误为零，耗时 107 秒。这是单次测量结果，不是可靠性统计，不能据此承诺偶发失败绝不再出现。
+
+本次修复将脚本 generation 清理由 `registerBindings` 移至 `beforeScriptsLoaded`，避免绑定注册误清新建任务；同时调整召唤实体属性 NBT，避免准备阶段无来源 `damage` 引起随机击退、污染战斗初始位置。历史 Forge 1.20.1 双语验收记录保留在 [README](../../README.md)，不作为当前版本全量兼容的证明。
+
 ## Fixtures 与断言
 
 测试脚本可用命令准备固定地形/物品，但随后必须通过公开 Playwright API 对实际游戏结果做断言。例如箱子测试检查：真实 `ContainerScreen`、63 个菜单槽位、玩家槽取出 emerald 后游标有货、点击箱子槽后内容变化且游标清空、关箱/重开和 save/rejoin 后内容保留。只有 server/client 观测到的状态才是行为证据。
+
+公共 Playwright API 尽量保持跨版本同名方法、参数、返回值和错误语义，版本差异由底层适配；原生命令、NBT、Java 和 KubeJS 版本特性可不同。测试夹具集中适配是后续方向，目前未实现跨版本统一夹具，不能把现有脚本视为已全部兼容。
 
 当前 suite 证明的是固定 vanilla/controlled single-player 流程，不代表任意模组屏幕、多玩家网络、其他 loader 或版本普遍兼容。

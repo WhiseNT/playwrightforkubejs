@@ -2,7 +2,9 @@
 
 [← Wiki 首页](Home.md) · [快速开始](Quick-Start.md) · [GUI 与 Locator](GUI-and-Locators.md) · [容器](Inventory-and-Containers.md)
 
-此表按发布版实现整理；细节以当前 tag 内 Java API 和实际客户端行为为准。所有命名空间由 `page` 提供，所有动作/查询返回可异步链式处理的 `PlaywrightTask`。
+此表面向当前 `mc-1.21.1` 分支（发布目标 `v0.1.0-mc1.21.1`）；细节以对应 tag 内 Java API 和实际客户端行为为准。所有命名空间由 `page` 提供，所有动作/查询返回可异步链式处理的 `PlaywrightTask`。
+
+公共 Playwright API 尽量跨版本保持同名方法、参数、返回值和错误语义，底层适配 Minecraft 差异。这不保证原生命令、NBT、Java 访问或 KubeJS 版本特性一致，也不代表跨版本统一测试夹具已实现。环境依赖见 [安装](Installation.md)。
 
 ## 根对象
 

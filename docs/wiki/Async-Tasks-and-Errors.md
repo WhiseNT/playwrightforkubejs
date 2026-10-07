@@ -60,6 +60,8 @@ return page.status().ready(30000)
 - `Playwright.reset()` 或真实 KubeJS client-script reload 会推进 generation，使旧 generation 的活动任务以 `SCRIPT_RELOADED` 失败，并释放模组追踪到的合成输入。
 - 重新加载后不得让旧 scope callback 修改新一轮测试。重新获取 page 并在新 scope 里运行。
 
+当前 1.21.1 分支在 `beforeScriptsLoaded` 清理旧 generation，而不是在 `registerBindings` 注册绑定时清理，避免新脚本刚创建的任务被误取消。
+
 本模组专门测试过 wait、then 链、导航任务、hold 输入的真实脚本 reload 行为；这不意味着任意第三方 callback 都不会访问自己的 stale state。
 
 ## 重要错误码

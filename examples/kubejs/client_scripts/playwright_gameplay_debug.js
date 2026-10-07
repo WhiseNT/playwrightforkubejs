@@ -521,6 +521,14 @@ function playwrightGameplayDebug(page, stage, image, expectedFailure) {
   }).then(function () {
     return page.gui().close()
   }).then(function () {
+    // Source-less mob_attack damage applies random knockback in 1.21.1.
+    // Let it settle before resetting the next fixture; never teleport during fight().
+    return page.waitForTimeout(1000)
+  }).then(function () {
+    return command('/tp @s 20.5 -60 0.5 0 0')
+  }).then(function () {
+    return waitPosition(20.5, -60, 0.5)
+  }).then(function () {
     progress = 'combat-target-ready'
     // Only our own tag is cleaned; no mass kill of unrelated world entities.
     return command('/kill @e[tag=pw_gameplay_debug_target]')
@@ -528,7 +536,7 @@ function playwrightGameplayDebug(page, stage, image, expectedFailure) {
     // Open-front glass fixture keeps knockback behind the target, without blocking melee.
     return prepareCage(0)
   }).then(function () {
-    return command('/summon minecraft:pig 20.5 -60 2.5 {CustomName:\'{"text":"PW_DEBUG_TARGET"}\',CustomNameVisible:1b,Tags:["pw_gameplay_debug_target"],NoAI:1b,PersistenceRequired:1b,Attributes:[{Name:"minecraft:generic.max_health",Base:20.0d}],Health:20.0f}')
+    return command('/summon minecraft:pig 20.5 -60 2.5 {CustomName:\'{"text":"PW_DEBUG_TARGET"}\',CustomNameVisible:1b,Tags:["pw_gameplay_debug_target"],NoAI:1b,PersistenceRequired:1b,attributes:[{id:"minecraft:generic.max_health",base:20.0}],Health:20.0f}')
   }).then(function () {
     return findTarget()
   }).then(function (value) {

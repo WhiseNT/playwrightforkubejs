@@ -13,7 +13,7 @@
 
 ## Vanilla 单箱子例子
 
-在 Minecraft 1.20.1 / Forge vanilla 单箱子界面中，测试观测到 screen 简名 `ContainerScreen`、标题 Chest、27 箱子格 + 36 玩家格，共 63 个菜单槽位。此结果仅描述这一特定容器，不要套用到双箱子或模组自定义容器。
+历史 Minecraft 1.20.1 / Forge 验收中，在 vanilla 单箱子界面里，测试观测到 screen 简名 `ContainerScreen`、标题 Chest、27 箱子格 + 36 玩家格，共 63 个菜单槽位。此结果仅描述这一特定容器，不要套用到双箱子或模组自定义容器。
 
 下面的例子假定脚本已在世界里打开箱子，且 `sourceSlot` 是从本次 GUI snapshot 中找到的玩家绿宝石槽，`targetSlot` 是空箱子格：
 
