@@ -1,8 +1,8 @@
 # AI / 自动化编码助手指南
 
-简体中文 | [English](AI-Coding-Guide.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/AI-Coding-Guide.en)
 
-[← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [异步任务](Async-Tasks-and-Errors.md) · [E2E 验收](E2E-Testing.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [API 参考](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [异步任务](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors) · [E2E 验收](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing)
 
 本页用于让 AI 助手和人类共同编写可运行、可审计的 KubeJS 测试。项目名包含 Playwright，但这里的运行时不是 Playwright browser/page，也不是浏览器 DOM。
 
@@ -66,4 +66,4 @@ NTLauncher CLI 可帮助 Agent 在没有 Gradle 调试环境时启动一个**已
 
 ## 不可作出的未经验证声明
 
-不要称本项目为官方 Playwright；不要称 `move().to(...)` 是 A*；不要把单人 flat-world vanilla E2E 推广成跨模组、多人、跨版本兼容；不要把 fixture 命令准备说成纯生存自然流程。更多约束见 [兼容边界](Home.md#适用版本和证据边界)。
+不要称本项目为官方 Playwright；不要称 `move().to(...)` 是 A*；不要把单人 flat-world vanilla E2E 推广成跨模组、多人、跨版本兼容；不要把 fixture 命令准备说成纯生存自然流程。更多约束见 [兼容边界](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home#适用版本和证据边界)。

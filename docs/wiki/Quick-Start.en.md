@@ -1,8 +1,8 @@
 # Quick Start
 
-[简体中文](Quick-Start.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start) | English
 
-[← Wiki Home](Home.en.md) · [Installation](Installation.en.md) · [Full API](API-Reference.en.md) · [Step-by-step beginner tutorial (Chinese)](../tutorial/Getting-Started.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Installation](https://github.com/WhiseNT/playwrightforkubejs/wiki/Installation.en) · [Full API](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) · [Step-by-step beginner tutorial (Chinese)](../tutorial/Getting-Started.md)
 
 ## Your first status check
 
@@ -68,4 +68,4 @@ Run this test while in a game world. `escape` opens the actual PauseScreen; `men
 5. Read the actual game state again for your assertion.
 6. Add diagnostic error handling to the entire task chain.
 
-**Do not** synchronously assume that the GUI/world is ready when the script loads, or assume that the game state changed merely because an action task succeeded. See the [API reference](API-Reference.en.md) for more details and [Inventory and Containers](Inventory-and-Containers.en.md) for a chest example.
+**Do not** synchronously assume that the GUI/world is ready when the script loads, or assume that the game state changed merely because an action task succeeded. See the [API reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) for more details and [Inventory and Containers](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers.en) for a chest example.

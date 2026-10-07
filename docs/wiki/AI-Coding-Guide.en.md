@@ -1,8 +1,8 @@
 # Guide for AI / Automated Coding Assistants
 
-[简体中文](AI-Coding-Guide.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/AI-Coding-Guide) | English
 
-[← Wiki Home](Home.en.md) · [API Reference](API-Reference.en.md) · [Async Tasks](Async-Tasks-and-Errors.en.md) · [E2E Acceptance Testing](E2E-Testing.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [API Reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) · [Async Tasks](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors.en) · [E2E Acceptance Testing](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing.en)
 
 This page helps AI assistants and humans work together to write runnable, auditable KubeJS tests. Although the project name includes Playwright, its runtime is not a Playwright browser/page and does not use a browser DOM.
 
@@ -66,4 +66,4 @@ Finally, explain runtime prerequisites, world state that may be affected, tests 
 
 ## Unverified Claims You Must Not Make
 
-Do not call this project official Playwright; do not call `move().to(...)` A*; do not generalize single-player flat-world vanilla E2E results into cross-mod, multiplayer, or cross-version compatibility; do not describe fixture preparation using commands as a purely natural survival workflow. See [compatibility boundaries](Home.en.md#applicable-versions-and-evidence-boundaries) for further constraints.
+Do not call this project official Playwright; do not call `move().to(...)` A*; do not generalize single-player flat-world vanilla E2E results into cross-mod, multiplayer, or cross-version compatibility; do not describe fixture preparation using commands as a purely natural survival workflow. See [compatibility boundaries](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en#applicable-versions-and-evidence-boundaries) for further constraints.

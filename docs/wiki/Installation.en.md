@@ -1,8 +1,8 @@
 # Installation and Compatible Versions
 
-[简体中文](Installation.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/Installation) | English
 
-[← Wiki Home](Home.en.md) · [Hands-on Tutorial (Chinese)](../tutorial/Getting-Started.md) · [Quick Start](Quick-Start.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Hands-on Tutorial (Chinese)](../tutorial/Getting-Started.md) · [Quick Start](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start.en)
 
 ## Download a Release
 

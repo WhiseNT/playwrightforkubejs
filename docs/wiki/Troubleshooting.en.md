@@ -1,8 +1,8 @@
 # Troubleshooting
 
-[简体中文](Troubleshooting.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting) | English
 
-[← Wiki Home](Home.en.md) · [Installation](Installation.en.md) · [Async Tasks and Errors](Async-Tasks-and-Errors.en.md) · [GUI Locators](GUI-and-Locators.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Installation](https://github.com/WhiseNT/playwrightforkubejs/wiki/Installation.en) · [Async Tasks and Errors](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors.en) · [GUI Locators](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators.en)
 
 Read the **first** Playwright/KubeJS error and its corresponding stage before looking at the final chain of cascading errors. Logs are usually in the instance's `logs/kubejs/client.log` and `logs/latest.log`.
 

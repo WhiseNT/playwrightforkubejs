@@ -1,8 +1,8 @@
 # Real-Client E2E Testing
 
-[简体中文](E2E-Testing.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing) | English
 
-[← Wiki Home](Home.en.md) · [Container Examples](Inventory-and-Containers.en.md) · [Async Errors](Async-Tasks-and-Errors.en.md) · [AI Coding Guide](AI-Coding-Guide.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Container Examples](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers.en) · [Async Errors](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors.en) · [AI Coding Guide](https://github.com/WhiseNT/playwrightforkubejs/wiki/AI-Coding-Guide.en)
 
 ## What the Different Types of Tests Prove
 

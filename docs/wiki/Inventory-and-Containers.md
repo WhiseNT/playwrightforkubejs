@@ -1,8 +1,8 @@
 # 背包与容器
 
-简体中文 | [English](Inventory-and-Containers.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers.en)
 
-[← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [GUI 与 Locator](GUI-and-Locators.md) · [E2E 测试](E2E-Testing.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [API 参考](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [GUI 与 Locator](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators) · [E2E 测试](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing)
 
 ## 两种 slot 编号
 

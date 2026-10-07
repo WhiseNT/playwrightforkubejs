@@ -1,8 +1,8 @@
 # GUI 与 Locator
 
-简体中文 | [English](GUI-and-Locators.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators.en)
 
-[← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [快速开始](Quick-Start.md) · [排障](Troubleshooting.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [API 参考](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [快速开始](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start) · [排障](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting)
 
 ## 查询先于输入
 

@@ -1,8 +1,8 @@
 # Inventory and Containers
 
-[简体中文](Inventory-and-Containers.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers) | English
 
-[← Wiki Home](Home.en.md) · [API Reference](API-Reference.en.md) · [GUI and Locators](GUI-and-Locators.en.md) · [E2E Testing](E2E-Testing.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [API Reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) · [GUI and Locators](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators.en) · [E2E Testing](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing.en)
 
 ## Two kinds of slot indices
 

@@ -1,8 +1,8 @@
 # 快速开始
 
-简体中文 | [English](Quick-Start.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start.en)
 
-[← Wiki 首页](Home.md) · [安装](Installation.md) · [完整 API](API-Reference.md) · [新手分步教程](../tutorial/Getting-Started.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [安装](https://github.com/WhiseNT/playwrightforkubejs/wiki/Installation) · [完整 API](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [新手分步教程](../tutorial/Getting-Started.md)
 
 ## 第一个状态检查
 
@@ -68,4 +68,4 @@ Playwright.run("close-pause-menu", function (page) {
 5. 再读取游戏的真实状态作为断言。
 6. 为整条任务链设置可诊断的错误处理。
 
-**不要**在脚本加载时直接同步假定 GUI/世界已经就绪，不要只因为 action task 成功就假定游戏状态改变了。更完整的 API 见[参考表](API-Reference.md)；箱子示例见[背包与容器](Inventory-and-Containers.md)。
+**不要**在脚本加载时直接同步假定 GUI/世界已经就绪，不要只因为 action task 成功就假定游戏状态改变了。更完整的 API 见[参考表](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference)；箱子示例见[背包与容器](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers)。

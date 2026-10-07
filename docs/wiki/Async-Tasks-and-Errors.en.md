@@ -1,8 +1,8 @@
 # Async Tasks and Error Handling
 
-[简体中文](Async-Tasks-and-Errors.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors) | English
 
-[← Wiki Home](Home.en.md) · [Quick Start](Quick-Start.en.md) · [API Reference](API-Reference.en.md) · [Troubleshooting](Troubleshooting.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Quick Start](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start.en) · [API Reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) · [Troubleshooting](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting.en)
 
 ## All actions/queries are tasks
 

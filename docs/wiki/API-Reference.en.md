@@ -1,12 +1,12 @@
 # API Reference
 
-[简体中文](API-Reference.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) | English
 
-[← Wiki Home](Home.en.md) · [Quick Start](Quick-Start.en.md) · [GUI and Locators](GUI-and-Locators.en.md) · [Containers](Inventory-and-Containers.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [Quick Start](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start.en) · [GUI and Locators](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators.en) · [Containers](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers.en)
 
 This reference covers the current `mc-1.21.1` branch (release target: `v0.1.0-mc1.21.1`). For details, consult the Java API in the corresponding tag and the actual client behavior. All namespaces are provided by `page`, and all actions/queries return a `PlaywrightTask` that supports asynchronous chaining.
 
-The public Playwright API aims to retain the same method names, parameters, return values, and error semantics across versions, with Minecraft differences handled by the underlying adapters. This does not guarantee consistency for native commands, NBT, Java access, or KubeJS version-specific features, nor does it mean that unified cross-version test fixtures have been implemented. See [Installation](Installation.en.md) for environment dependencies.
+The public Playwright API aims to retain the same method names, parameters, return values, and error semantics across versions, with Minecraft differences handled by the underlying adapters. This does not guarantee consistency for native commands, NBT, Java access, or KubeJS version-specific features, nor does it mean that unified cross-version test fixtures have been implemented. See [Installation](https://github.com/WhiseNT/playwrightforkubejs/wiki/Installation.en) for environment dependencies.
 
 ## Root objects
 

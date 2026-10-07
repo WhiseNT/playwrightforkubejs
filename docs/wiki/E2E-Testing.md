@@ -1,8 +1,8 @@
 # 真实客户端 E2E 测试
 
-简体中文 | [English](E2E-Testing.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/E2E-Testing.en)
 
-[← Wiki 首页](Home.md) · [容器示例](Inventory-and-Containers.md) · [异步错误](Async-Tasks-and-Errors.md) · [AI 编码指南](AI-Coding-Guide.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [容器示例](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers) · [异步错误](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors) · [AI 编码指南](https://github.com/WhiseNT/playwrightforkubejs/wiki/AI-Coding-Guide)
 
 ## 两类测试各自证明什么
 

@@ -1,8 +1,8 @@
 # 异步任务与错误处理
 
-简体中文 | [English](Async-Tasks-and-Errors.en.md)
+简体中文 | [English](https://github.com/WhiseNT/playwrightforkubejs/wiki/Async-Tasks-and-Errors.en)
 
-[← Wiki 首页](Home.md) · [快速开始](Quick-Start.md) · [API 参考](API-Reference.md) · [故障排查](Troubleshooting.md)
+[← Wiki 首页](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home) · [快速开始](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start) · [API 参考](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [故障排查](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting)
 
 ## 所有动作/查询都是任务
 

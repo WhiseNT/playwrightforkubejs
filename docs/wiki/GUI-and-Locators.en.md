@@ -1,8 +1,8 @@
 # GUI and Locators
 
-[简体中文](GUI-and-Locators.md) | English
+[简体中文](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators) | English
 
-[← Wiki Home](Home.en.md) · [API Reference](API-Reference.en.md) · [Quick Start](Quick-Start.en.md) · [Troubleshooting](Troubleshooting.en.md)
+[← Wiki Home](https://github.com/WhiseNT/playwrightforkubejs/wiki/Home.en) · [API Reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference.en) · [Quick Start](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start.en) · [Troubleshooting](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting.en)
 
 ## Query before providing input
 
