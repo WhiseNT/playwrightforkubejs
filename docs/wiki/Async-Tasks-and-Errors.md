@@ -1,5 +1,7 @@
 # 异步任务与错误处理
 
+简体中文 | [English](Async-Tasks-and-Errors.en.md)
+
 [← Wiki 首页](Home.md) · [快速开始](Quick-Start.md) · [API 参考](API-Reference.md) · [故障排查](Troubleshooting.md)
 
 ## 所有动作/查询都是任务

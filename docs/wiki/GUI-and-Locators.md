@@ -1,5 +1,7 @@
 # GUI 与 Locator
 
+简体中文 | [English](GUI-and-Locators.en.md)
+
 [← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [快速开始](Quick-Start.md) · [排障](Troubleshooting.md)
 
 ## 查询先于输入

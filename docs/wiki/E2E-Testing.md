@@ -1,5 +1,7 @@
 # 真实客户端 E2E 测试
 
+简体中文 | [English](E2E-Testing.en.md)
+
 [← Wiki 首页](Home.md) · [容器示例](Inventory-and-Containers.md) · [异步错误](Async-Tasks-and-Errors.md) · [AI 编码指南](AI-Coding-Guide.md)
 
 ## 两类测试各自证明什么

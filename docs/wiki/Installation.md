@@ -1,5 +1,7 @@
 # 安装与兼容版本
 
+简体中文 | [English](Installation.en.md)
+
 [← Wiki 首页](Home.md) · [新手实操](../tutorial/Getting-Started.md) · [快速开始](Quick-Start.md)
 
 ## 下载发行版

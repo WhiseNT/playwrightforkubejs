@@ -1,5 +1,7 @@
 # 故障排查
 
+简体中文 | [English](Troubleshooting.en.md)
+
 [← Wiki 首页](Home.md) · [安装](Installation.md) · [异步与错误](Async-Tasks-and-Errors.md) · [GUI 定位](GUI-and-Locators.md)
 
 先读取**第一条** Playwright/KubeJS 错误及其对应阶段，不要只看最后一串因果错误。日志一般在实例 `logs/kubejs/client.log` 与 `logs/latest.log`。

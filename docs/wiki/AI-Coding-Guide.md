@@ -1,5 +1,7 @@
 # AI / 自动化编码助手指南
 
+简体中文 | [English](AI-Coding-Guide.en.md)
+
 [← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [异步任务](Async-Tasks-and-Errors.md) · [E2E 验收](E2E-Testing.md)
 
 本页用于让 AI 助手和人类共同编写可运行、可审计的 KubeJS 测试。项目名包含 Playwright，但这里的运行时不是 Playwright browser/page，也不是浏览器 DOM。

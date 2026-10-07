@@ -1,5 +1,7 @@
 # API 参考
 
+简体中文 | [English](API-Reference.en.md)
+
 [← Wiki 首页](Home.md) · [快速开始](Quick-Start.md) · [GUI 与 Locator](GUI-and-Locators.md) · [容器](Inventory-and-Containers.md)
 
 此表面向当前 `mc-1.21.1` 分支（发布目标 `v0.1.0-mc1.21.1`）；细节以对应 tag 内 Java API 和实际客户端行为为准。所有命名空间由 `page` 提供，所有动作/查询返回可异步链式处理的 `PlaywrightTask`。

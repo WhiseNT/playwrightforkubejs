@@ -1,5 +1,7 @@
 # 快速开始
 
+简体中文 | [English](Quick-Start.en.md)
+
 [← Wiki 首页](Home.md) · [安装](Installation.md) · [完整 API](API-Reference.md) · [新手分步教程](../tutorial/Getting-Started.md)
 
 ## 第一个状态检查

@@ -1,5 +1,7 @@
 # 背包与容器
 
+简体中文 | [English](Inventory-and-Containers.en.md)
+
 [← Wiki 首页](Home.md) · [API 参考](API-Reference.md) · [GUI 与 Locator](GUI-and-Locators.md) · [E2E 测试](E2E-Testing.md)
 
 ## 两种 slot 编号

@@ -1,5 +1,7 @@
 # Playwright For KubeJS Wiki
 
+简体中文 | [English](Home.en.md)
+
 欢迎！本 Wiki 面向第一次使用的整合包玩家、KubeJS 脚本作者、模组开发者和编码助手。
 
 > **快速认识项目：**这是当前 `mc-1.21.1` 分支的 Minecraft 1.21.1 / NeoForge 客户端侧的 KubeJS 自动化与测试 API。它提供 GUI、locator、玩家状态、背包/菜单槽位、输入和有界异步任务。它不是浏览器自动化工具、不是官方 Playwright，也没有完整 A* 路径规划。
