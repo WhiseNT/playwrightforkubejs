@@ -62,6 +62,14 @@ Playwright.run("status-smoke", function (page) {
 
 `Playwright.run(name, callback)` invokes the callback with a page API on the Minecraft client thread. API actions and waits return `PlaywrightTask` values. Chain dependent operations with `.then(...)` and handle failures with `.catchError(...)`; callbacks may return another task, which is adopted by the chain. A client script reload invalidates tasks from the previous script generation and releases synthetic inputs.
 
+## Download and learning resources
+
+- [Download the v0.1.0 JAR](https://github.com/WhiseNT/playwrightforkubejs/releases/download/v0.1.0/playwrightforkubejs-0.1.0.jar) · [All releases](https://github.com/WhiseNT/playwrightforkubejs/releases)
+- **New user:** [Step-by-step installation and first test](docs/tutorial/Getting-Started.md)
+- **Wiki:** [Online Wiki home](https://github.com/WhiseNT/playwrightforkubejs/wiki) · [Quick start](https://github.com/WhiseNT/playwrightforkubejs/wiki/Quick-Start) · [API reference](https://github.com/WhiseNT/playwrightforkubejs/wiki/API-Reference) · [GUI locators](https://github.com/WhiseNT/playwrightforkubejs/wiki/GUI-and-Locators) · [Containers](https://github.com/WhiseNT/playwrightforkubejs/wiki/Inventory-and-Containers) · [AI coding guide](https://github.com/WhiseNT/playwrightforkubejs/wiki/AI-Coding-Guide) · [Troubleshooting](https://github.com/WhiseNT/playwrightforkubejs/wiki/Troubleshooting)
+
+The checked release JAR is attached to the GitHub Release; do not build from source merely to install it. The Wiki source pages remain available under [`docs/wiki/`](docs/wiki/Home.md) for offline browsing and code review.
+
 ## API overview
 
 The public client binding exposes `Playwright.client().page()`, `Playwright.run(...)`, `Playwright.expect(value)` and `Playwright.reset()`.
@@ -108,6 +116,14 @@ python examples/run_client_e2e.py \
 ```
 
 On Windows, pass the Java and Gradle executable paths for that machine. Add `--online` if Gradle must download dependencies; by default the runner uses offline mode. Each run prints a JSON result and writes its report, event log, client log and screenshots under `run/e2e/<run-id>/test-results/`. Choose a fresh run ID when running a single configuration with `--run-id`; existing run directories are never overwritten.
+
+### Launch an installed instance with NTLauncher CLI (optional)
+
+If an agent has no Gradle development environment, it can use [NTLauncher](https://ntlaunch.cn/)'s Windows CLI to launch an already-installed Minecraft instance. The CLI starts/manages the process; this mod still provides automation only after Minecraft loads it. The instance must already contain a compatible Forge/KubeJS setup, this mod JAR, and the client test scripts. Configure a usable account and Java runtime in NTLauncher first. The CLI does not build the mod, install dependencies, copy scripts, or report that a Playwright test passed.
+
+The documented workflow is to run `ntlauncher-cli.exe list-instances --json`, select an instance whose `install_state` is `Installed`, then run `ntlauncher-cli.exe launch --instance-id <ID> --json`. `launch` is a foreground, blocking command that returns when the game exits; use a separate CLI process and its `status`/`stop` commands for controlled background runs. Check both the CLI exit result and the Minecraft/KubeJS client log or a test-generated result before reporting test success. See the [NTLauncher CLI documentation](https://ntlaunch.cn/docs) for PowerShell examples, timeouts, and process handling.
+
+This is an optional launch path for preconfigured instances, not a replacement for the Gradle-based isolated E2E suite above. NTLauncher currently documents a Windows CLI release.
 
 ## What has been verified
 
